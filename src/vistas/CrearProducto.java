@@ -45,22 +45,15 @@ public class CrearProducto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmbProdcutos = new javax.swing.JComboBox<>();
-        txtCantidad = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbIngredienteSeleccionado = new javax.swing.JTable();
+        txtNombreProducto = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        getContentPane().add(cmbProdcutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 150, 50));
-
-        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidadActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 80, 30));
 
         tbIngredienteSeleccionado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,15 +88,19 @@ public class CrearProducto extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tbIngredienteSeleccionado);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 590, 210));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 590, 210));
+        getContentPane().add(txtNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 150, 30));
+        getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 120, 30));
+
+        jLabel1.setText("Nombre del producto");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
+
+        jLabel2.setText("Precio");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, -1, -1));
 
         setSize(new java.awt.Dimension(646, 436));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadActionPerformed
 
     private void tbIngredienteSeleccionadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIngredienteSeleccionadoMouseClicked
 
@@ -156,9 +153,11 @@ public class CrearProducto extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JComboBox<String> cmbProdcutos;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tbIngredienteSeleccionado;
-    public javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtNombreProducto;
+    private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }
