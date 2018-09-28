@@ -5,13 +5,7 @@
  */
 package vistas;
 
-import Modelo.Conexion;
 import Modelo.ConsultasIngrediente;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 
 /**
  *
@@ -51,6 +45,9 @@ public class CrearProducto extends javax.swing.JDialog {
         txtPrecio = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        cmbTipoProducto = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        btnCrearProducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -89,16 +86,29 @@ public class CrearProducto extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tbIngredienteSeleccionado);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 590, 210));
-        getContentPane().add(txtNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 150, 30));
-        getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 120, 30));
+        getContentPane().add(txtNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 150, 30));
+        getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 120, 30));
 
         jLabel1.setText("Nombre del producto");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
 
         jLabel2.setText("Precio");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
 
-        setSize(new java.awt.Dimension(646, 436));
+        cmbTipoProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTipoProductoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmbTipoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 90, 30));
+
+        jLabel3.setText("Tipo");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, -1, -1));
+
+        btnCrearProducto.setText("Crear");
+        getContentPane().add(btnCrearProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 310, -1, -1));
+
+        setSize(new java.awt.Dimension(646, 428));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -109,6 +119,10 @@ public class CrearProducto extends javax.swing.JDialog {
     private void tbIngredienteSeleccionadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIngredienteSeleccionadoMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_tbIngredienteSeleccionadoMouseEntered
+
+    private void cmbTipoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTipoProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,7 +158,7 @@ public class CrearProducto extends javax.swing.JDialog {
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
+                    System.exit(0);
                     }
                 });
                 dialog.setVisible(true);
@@ -153,11 +167,14 @@ public class CrearProducto extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnCrearProducto;
+    public javax.swing.JComboBox<String> cmbTipoProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tbIngredienteSeleccionado;
-    private javax.swing.JTextField txtNombreProducto;
-    private javax.swing.JTextField txtPrecio;
+    public javax.swing.JTextField txtNombreProducto;
+    public javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }

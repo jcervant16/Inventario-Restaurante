@@ -113,9 +113,7 @@ public class CtrlIngrediente implements ActionListener, ListSelectionListener {
 
         }
         if (e.getSource() == this.ingGui.btnCrearProducto) {
-            cp.cmbProdcutos.removeAllItems();
-            cing.llenarCombo(cp.cmbProdcutos);
-            cp.setVisible(true);
+                 cp.setVisible(true);
             
         }
          if (e.getSource() == this.ingGui.btnAgregarSeleccionado) {
