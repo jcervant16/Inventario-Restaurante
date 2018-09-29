@@ -5,6 +5,9 @@
  */
 package vistas;
 
+import Modelo.ConsultasProducto;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jose1
@@ -17,6 +20,9 @@ public class VentasGui extends javax.swing.JDialog {
     public VentasGui(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        ConsultasProducto consultas = new ConsultasProducto();
+              
+                consultas.llenarTablaProducto(tlbProductosCreados);
     }
 
     /**
@@ -63,18 +69,10 @@ public class VentasGui extends javax.swing.JDialog {
             new String [] {
                 "Codigo", "Nombre", "Tipo", "Precio"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane3.setViewportView(tlbProductosCreados);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 380, 90));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 380, 100));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

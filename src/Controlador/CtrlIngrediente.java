@@ -6,7 +6,9 @@
 package Controlador;
 
 import Modelo.ConsultasIngrediente;
+import Modelo.ConsultasProducto;
 import Modelo.Ingrediente;
+import Modelo.Producto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -15,6 +17,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import vistas.CrearProducto;
 import vistas.IngredienteGUI;
+import vistas.Principal;
+import vistas.VentasGui;
 
 /**
  *
@@ -26,32 +30,42 @@ public class CtrlIngrediente implements ActionListener, ListSelectionListener {
     private ConsultasIngrediente cing;
     private IngredienteGUI ingGui;
     private CrearProducto cp = new CrearProducto(null, true);
+    private Producto p = new Producto();
+    private ConsultasProducto consultas = new ConsultasProducto();
+    private VentasGui vg= new VentasGui(null, true);
+    private Principal inicio;
 
-    public CtrlIngrediente(Ingrediente ing, ConsultasIngrediente cing, IngredienteGUI ingGui) {
+    public CtrlIngrediente(Ingrediente ing, ConsultasIngrediente cing, IngredienteGUI ingGui,Principal p) {
         this.ing = ing;
         this.cing = cing;
         this.ingGui = ingGui;
+        this.inicio = p;
         this.ingGui.btnAgregar.addActionListener(this);
         this.ingGui.btnEditar.addActionListener(this);
         this.ingGui.btnEliminar.addActionListener(this);
         this.ingGui.btnCrearProducto.addActionListener(this);
         this.ingGui.btnAgregarSeleccionado.addActionListener(this);
         this.ingGui.tblInventario.getSelectionModel().addListSelectionListener(this);
+        this.cp.btnCrear.addActionListener(this);
+        this.inicio.jButton1.addActionListener(this);
+        this.inicio.jButton2.addActionListener(this);
+
     }
 
     public void iniciar() {
-        this.ingGui.setTitle("Ingredientes");
-        this.ingGui.setLocationRelativeTo(null);
+        this.inicio.setTitle("Principal");
+        this.inicio.setLocationRelativeTo(null);
 
     }
-    public void limpiar(){
+
+    public void limpiar() {
         ingGui.txtNombre.setText("");
         ingGui.txtCantidad.setText("");
         ingGui.txtCodigo.setText("");
         ingGui.txtId.setText("");
         ingGui.cmbTipo.setSelectedItem("Seleccione Tipo");
         ingGui.cmbUnidades.setSelectedItem("Seleccione unidad");
-        
+
     }
 
     @Override
@@ -63,14 +77,12 @@ public class CtrlIngrediente implements ActionListener, ListSelectionListener {
             ing.setCantidadIngrediente(Double.parseDouble(ingGui.txtCantidad.getText()));
             ing.setUnidad(ingGui.cmbUnidades.getSelectedItem().toString());
             if (cing.registrar(ing)) {
-                
+
                 DefaultTableModel modelo = (DefaultTableModel) ingGui.tblInventario.getModel();
                 modelo.setNumRows(0);
                 cing.llenarTabla(ingGui.tblInventario);
                 this.limpiar();
 
-               
-                
             } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar");
             }
@@ -93,59 +105,83 @@ public class CtrlIngrediente implements ActionListener, ListSelectionListener {
             } else {
                 JOptionPane.showMessageDialog(null, "Error al editar");
             }
-            
+
         }
         if (e.getSource() == this.ingGui.btnEliminar) {
             ing.setIdIngrediente(Integer.parseInt(ingGui.txtId.getText()));
             int x = JOptionPane.showConfirmDialog(null, "Está seguro de querer eliminar este elemento?");
-            if(x==0){
+            if (x == 0) {
                 if (cing.eliminar(ing)) {
-                     DefaultTableModel modelo = (DefaultTableModel) ingGui.tblInventario.getModel();
-                     modelo.setNumRows(0);
-                     cing.llenarTabla(ingGui.tblInventario);
-                     this.limpiar();
-                JOptionPane.showMessageDialog(null, "registro eliminado");
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al eliminar");
+                    DefaultTableModel modelo = (DefaultTableModel) ingGui.tblInventario.getModel();
+                    modelo.setNumRows(0);
+                    cing.llenarTabla(ingGui.tblInventario);
+                    this.limpiar();
+                    JOptionPane.showMessageDialog(null, "registro eliminado");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al eliminar");
+                }
             }
-            }
-            
 
         }
         if (e.getSource() == this.ingGui.btnCrearProducto) {
-                 cp.setVisible(true);
-            
+            cp.setVisible(true);
+
         }
-         if (e.getSource() == this.ingGui.btnAgregarSeleccionado) {
-          String cant = JOptionPane.showInputDialog("Que cantidad desea seleccionar?");
-          double cantidad = Double.parseDouble(cant);
-          
-          ing.setIdIngrediente(Integer.parseInt(ingGui.txtId.getText()));
-          ing.setCodigoIngrediente((ingGui.txtCodigo.getText()));
+        if (e.getSource() == this.ingGui.btnAgregarSeleccionado) {
+            String cant = JOptionPane.showInputDialog("Que cantidad desea seleccionar?");
+            double cantidad = Double.parseDouble(cant);
+
+            ing.setIdIngrediente(Integer.parseInt(ingGui.txtId.getText()));
+            ing.setCodigoIngrediente((ingGui.txtCodigo.getText()));
             ing.setNombreIngrediente(ingGui.txtNombre.getText());
             ing.setCantidadIngrediente(cantidad);
             ing.setTipoIngrediente(ingGui.cmbTipo.getSelectedItem().toString());
             ing.setUnidad(ingGui.cmbUnidades.getSelectedItem().toString());
-            if (cing.registrarSeleccionado(ing,cantidad)) {
-                
+            if (cing.registrarSeleccionado(ing, cantidad)) {
+
                 DefaultTableModel modelo = (DefaultTableModel) cp.tbIngredienteSeleccionado.getModel();
                 modelo.setNumRows(0);
                 cing.llenarTablaSeleccionado(cp.tbIngredienteSeleccionado);
-               /* Ingrediente ing2 =new Ingrediente();
+                /* Ingrediente ing2 =new Ingrediente();
                 ing2.setIdIngrediente(Integer.parseInt(ingGui.txtId.getText()));
                 ing2.setCantidadIngrediente(Double.parseDouble(ingGui.txtCantidad.getText()));
                 cing.actualizarCantidad(ing2, cantidad);
                 DefaultTableModel modelotblInventario = (DefaultTableModel) ingGui.tblInventario.getModel();
                 modelotblInventario.setNumRows(0);
                 cing.llenarTabla(ingGui.tblInventario);
-                */this.limpiar();
+                 */
+                this.limpiar();
 
-               
-                
             } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar");
             }
+
+        }
+        if (e.getSource() == this.cp.btnCrear) {
+
+            p.setCodigoProducto(cp.txtCodigo.getText());
+            p.setNombreProducto(cp.txtNombreProducto.getText());
+            p.setTipoProducto(cp.cmbTipoProducto.getSelectedItem().toString());
+            p.setPrecioProducto(Double.parseDouble(cp.txtPrecio.getText()));
+            if (consultas.registrar(p)) {
+                DefaultTableModel modelo = (DefaultTableModel) vg.tlbProductosCreados.getModel();
+                modelo.setNumRows(0);
+                consultas.llenarTablaProducto(vg.tlbProductosCreados);
+                JOptionPane.showMessageDialog(null, "Producto Creado exitosamente");
             
+            }else {
+            JOptionPane.showMessageDialog(null, "Error al guardarProducto");
+        }
+        }
+          if (e.getSource() == this.inicio.jButton1) {
+              ingGui.setLocationRelativeTo(null);
+              ingGui.setVisible(true);
+           
+        }
+          if (e.getSource() == this.inicio.jButton2) {
+              vg.setLocationRelativeTo(null);
+              vg.setVisible(true);
+           
         }
     }
 

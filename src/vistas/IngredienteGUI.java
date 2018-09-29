@@ -97,7 +97,7 @@ public class IngredienteGUI extends javax.swing.JDialog {
         jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 110, 30));
 
         cmbUnidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Miligramos", "Gramos", "Libras", "Kilos" }));
-        jPanel1.add(cmbUnidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 100, 30));
+        jPanel1.add(cmbUnidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 110, 30));
 
         cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Tipo", " " }));
         jPanel1.add(cmbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, 30));
@@ -151,7 +151,7 @@ public class IngredienteGUI extends javax.swing.JDialog {
                 btnCrearProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCrearProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 130, 30));
+        jPanel1.add(btnCrearProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 110, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 710, 140));
 
