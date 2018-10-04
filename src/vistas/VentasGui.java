@@ -38,6 +38,9 @@ public class VentasGui extends javax.swing.JDialog {
         tblVentas = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         tlbProductosCreados = new javax.swing.JTable();
+        spnCantidad = new javax.swing.JSpinner();
+        btnaddCart = new javax.swing.JButton();
+        txtCodigo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -69,10 +72,23 @@ public class VentasGui extends javax.swing.JDialog {
             new String [] {
                 "Codigo", "Nombre", "Tipo", "Precio"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(tlbProductosCreados);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 380, 100));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 380, 100));
+        getContentPane().add(spnCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 40, 30));
+
+        btnaddCart.setText("Añadir a carrito");
+        getContentPane().add(btnaddCart, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, -1, -1));
+        getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 50, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -120,9 +136,12 @@ public class VentasGui extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnaddCart;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    public javax.swing.JSpinner spnCantidad;
     public javax.swing.JTable tblVentas;
     public javax.swing.JTable tlbProductosCreados;
+    public javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }

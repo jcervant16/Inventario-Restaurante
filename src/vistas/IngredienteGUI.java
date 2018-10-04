@@ -6,7 +6,9 @@
 package vistas;
 
 
+import Controlador.CtrlIngrediente;
 import Modelo.ConsultasIngrediente;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +24,7 @@ public class IngredienteGUI extends javax.swing.JDialog {
         initComponents();
         ConsultasIngrediente cin = new ConsultasIngrediente();
         cin.llenarTabla(tblInventario);
+        txtId.setVisible(false);
     }
 
     /**
@@ -54,8 +57,14 @@ public class IngredienteGUI extends javax.swing.JDialog {
         btnAgregarSeleccionado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblInventario.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         tblInventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -97,27 +106,33 @@ public class IngredienteGUI extends javax.swing.JDialog {
         jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 110, 30));
 
         cmbUnidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Miligramos", "Gramos", "Libras", "Kilos" }));
-        jPanel1.add(cmbUnidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 110, 30));
+        jPanel1.add(cmbUnidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 120, 30));
 
-        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Tipo", " " }));
-        jPanel1.add(cmbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, 30));
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Tipo", "Vegetales", "Tuberculos", "Frutas", "Carnes", "Harinas" }));
+        jPanel1.add(cmbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, 30));
         jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 80, 30));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel1.setText("Codigo");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel2.setText("Nombre");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel3.setText("Cantidad");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel4.setText("Tipo");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel5.setText("Unidades");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, -1, -1));
 
+        btnAgregar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         btnAgregar.setText("Añadir");
         btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +142,9 @@ public class IngredienteGUI extends javax.swing.JDialog {
         });
         jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 80, 30));
 
+        btnEditar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         btnEditar.setText("Editar");
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -135,6 +152,7 @@ public class IngredienteGUI extends javax.swing.JDialog {
         });
         jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 80, 30));
 
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +169,7 @@ public class IngredienteGUI extends javax.swing.JDialog {
                 btnCrearProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCrearProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 110, 30));
+        jPanel1.add(btnCrearProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 120, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 710, 140));
 
@@ -187,6 +205,10 @@ public class IngredienteGUI extends javax.swing.JDialog {
 
        
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments

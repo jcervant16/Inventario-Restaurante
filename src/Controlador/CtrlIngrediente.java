@@ -46,11 +46,14 @@ public class CtrlIngrediente implements ActionListener, ListSelectionListener {
         this.ingGui.btnCrearProducto.addActionListener(this);
         this.ingGui.btnAgregarSeleccionado.addActionListener(this);
         this.ingGui.tblInventario.getSelectionModel().addListSelectionListener(this);
+//        this.vg.tblVentas.getSelectionModel().addListSelectionListener(this);
         this.cp.btnCrear.addActionListener(this);
         this.inicio.jButton1.addActionListener(this);
         this.inicio.jButton2.addActionListener(this);
 
     }
+
+   
 
     public void iniciar() {
         this.inicio.setTitle("Principal");
@@ -71,6 +74,11 @@ public class CtrlIngrediente implements ActionListener, ListSelectionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.ingGui.btnAgregar) {
+            if(ingGui.txtId.getText().isEmpty()||ingGui.txtCodigo.getText().isEmpty()||ingGui.txtNombre.getText().isEmpty()||
+              ingGui.txtCantidad.getText().isEmpty()||ingGui.cmbTipo.getSelectedItem().equals("Seleccione Tipo")||
+              ingGui.cmbUnidades.getSelectedItem().equals("Seleccione Tipo")){
+                JOptionPane.showMessageDialog(null, "Hay algún campo vacio");
+            }else{
             ing.setCodigoIngrediente((ingGui.txtCodigo.getText()));
             ing.setNombreIngrediente(ingGui.txtNombre.getText());
             ing.setTipoIngrediente(ingGui.cmbTipo.getSelectedItem().toString());
@@ -86,24 +94,32 @@ public class CtrlIngrediente implements ActionListener, ListSelectionListener {
             } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar");
             }
-
+            }
         }
 
         if (e.getSource() == this.ingGui.btnEditar) {
-            ing.setIdIngrediente(Integer.parseInt(ingGui.txtId.getText()));
-            ing.setNombreIngrediente(ingGui.txtNombre.getText());
-            ing.setTipoIngrediente(ingGui.cmbTipo.getSelectedItem().toString());
-            ing.setCantidadIngrediente(Double.parseDouble(ingGui.txtCantidad.getText()));
-            ing.setUnidad(ingGui.cmbUnidades.getSelectedItem().toString());
-            ing.setCodigoIngrediente((ingGui.txtCodigo.getText()));
+            if(ingGui.txtId.getText().isEmpty()||ingGui.txtCodigo.getText().isEmpty()||ingGui.txtNombre.getText().isEmpty()||
+              ingGui.txtCantidad.getText().isEmpty()||ingGui.cmbTipo.getSelectedItem().equals("Seleccione Tipo")||
+              ingGui.cmbUnidades.getSelectedItem().equals("Seleccione Tipo")){
+                JOptionPane.showMessageDialog(null, "No editó ningun campo");
+            }else{
+                ing.setIdIngrediente(Integer.parseInt(ingGui.txtId.getText()));
+                ing.setNombreIngrediente(ingGui.txtNombre.getText());
+                ing.setTipoIngrediente(ingGui.cmbTipo.getSelectedItem().toString());
+                ing.setCantidadIngrediente(Double.parseDouble(ingGui.txtCantidad.getText()));
+                ing.setUnidad(ingGui.cmbUnidades.getSelectedItem().toString());
+                ing.setCodigoIngrediente((ingGui.txtCodigo.getText()));
+            
+            
             if (cing.modificar(ing)) {
                 DefaultTableModel modelo = (DefaultTableModel) ingGui.tblInventario.getModel();
                 modelo.setNumRows(0);
                 cing.llenarTabla(ingGui.tblInventario);
                 this.limpiar();
-                JOptionPane.showMessageDialog(null, "registro editado");
+                JOptionPane.showMessageDialog(null, "Registro editado");
             } else {
                 JOptionPane.showMessageDialog(null, "Error al editar");
+            }
             }
 
         }
@@ -175,12 +191,18 @@ public class CtrlIngrediente implements ActionListener, ListSelectionListener {
         }
           if (e.getSource() == this.inicio.jButton1) {
               ingGui.setLocationRelativeTo(null);
+              ingGui.setSize(815, 508);
               ingGui.setVisible(true);
            
         }
           if (e.getSource() == this.inicio.jButton2) {
               vg.setLocationRelativeTo(null);
+              vg.setSize(573, 473);
               vg.setVisible(true);
+           
+        }
+          if (e.getSource() == this.vg.btnaddCart) {
+              
            
         }
     }
@@ -198,6 +220,7 @@ public class CtrlIngrediente implements ActionListener, ListSelectionListener {
             ingGui.cmbUnidades.setSelectedItem(ingGui.tblInventario.getValueAt(fila, 5).toString());
 
         }
+        
         //To change body of generated methods, choose Tools | Templates.
     }
 

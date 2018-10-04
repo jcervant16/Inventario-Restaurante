@@ -88,34 +88,39 @@ public class CrearProducto extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tbIngredienteSeleccionado);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 590, 210));
-        getContentPane().add(txtNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 150, 30));
-        getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 120, 30));
+        getContentPane().add(txtNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 150, 30));
+        getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 120, 30));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel1.setText("Nombre del producto");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel2.setText("Precio");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, -1, -1));
 
-        cmbTipoProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccionr" }));
+        cmbTipoProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Almuerzo", "Salchipapa", "HotDogs", "Hamburguesa", "Mazorca" }));
         cmbTipoProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbTipoProductoActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbTipoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 90, 30));
+        getContentPane().add(cmbTipoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 90, 30));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel3.setText("Tipo");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, -1, -1));
 
+        btnCrear.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         btnCrear.setText("Crear");
+        btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 310, -1, 30));
-        getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 80, 30));
+        getContentPane().add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, -1, 30));
+        getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 60, 30));
 
         setSize(new java.awt.Dimension(646, 428));
         setLocationRelativeTo(null);

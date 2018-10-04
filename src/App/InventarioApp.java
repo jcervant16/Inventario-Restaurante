@@ -22,6 +22,7 @@ public class InventarioApp  {
         Ingrediente in = new Ingrediente();
         ConsultasIngrediente ci = new ConsultasIngrediente();
         IngredienteGUI ingui = new IngredienteGUI(null, true);
+        
         Principal p = new Principal();
         
 //        Producto p = new Producto();
