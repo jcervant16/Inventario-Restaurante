@@ -6,13 +6,15 @@
 package vistas;
 
 import Modelo.ConsultasProducto;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author jose1
  */
-public class VentasGui extends javax.swing.JDialog {
+public class VentasGui extends javax.swing.JDialog implements ListSelectionListener {
 
     /**
      * Creates new form VentasGui
@@ -22,7 +24,10 @@ public class VentasGui extends javax.swing.JDialog {
         initComponents();
         ConsultasProducto consultas = new ConsultasProducto();
               
-                consultas.llenarTablaProducto(tlbProductosCreados);
+                consultas.llenarTablaProducto(tblProductosCreados);
+                consultas.llenarTablaVenta(tblVentas);
+                tblProductosCreados.getSelectionModel().addListSelectionListener(this);
+                  
     }
 
     /**
@@ -37,10 +42,11 @@ public class VentasGui extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVentas = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tlbProductosCreados = new javax.swing.JTable();
+        tblProductosCreados = new javax.swing.JTable();
         spnCantidad = new javax.swing.JSpinner();
         btnaddCart = new javax.swing.JButton();
-        txtCodigo = new javax.swing.JTextField();
+        lblCodigo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -65,7 +71,7 @@ public class VentasGui extends javax.swing.JDialog {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 480, 120));
 
-        tlbProductosCreados.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductosCreados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -81,17 +87,29 @@ public class VentasGui extends javax.swing.JDialog {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(tlbProductosCreados);
+        tblProductosCreados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProductosCreadosMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblProductosCreados);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 380, 100));
-        getContentPane().add(spnCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 40, 30));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 380, 100));
+        getContentPane().add(spnCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, 40, 30));
 
         btnaddCart.setText("Añadir a carrito");
-        getContentPane().add(btnaddCart, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, -1, -1));
-        getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 50, -1));
+        getContentPane().add(btnaddCart, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, -1, 30));
+        getContentPane().add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 60, 30));
+
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 110, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblProductosCreadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosCreadosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblProductosCreadosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -137,11 +155,22 @@ public class VentasGui extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnaddCart;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblCodigo;
     public javax.swing.JSpinner spnCantidad;
+    public javax.swing.JTable tblProductosCreados;
     public javax.swing.JTable tblVentas;
-    public javax.swing.JTable tlbProductosCreados;
-    public javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        int fila = tblProductosCreados.getSelectedRow();
+      
+        if(tblProductosCreados.getSelectedRow() != -1){
+             lblCodigo.setText(tblProductosCreados.getValueAt(fila, 0).toString());
+        }
+      
+    }
 }

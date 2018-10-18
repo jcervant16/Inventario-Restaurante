@@ -48,8 +48,9 @@ public class CtrlIngrediente implements ActionListener, ListSelectionListener {
         this.ingGui.tblInventario.getSelectionModel().addListSelectionListener(this);
 //        this.vg.tblVentas.getSelectionModel().addListSelectionListener(this);
         this.cp.btnCrear.addActionListener(this);
-        this.inicio.jButton1.addActionListener(this);
-        this.inicio.jButton2.addActionListener(this);
+        this.inicio.btnInventario.addActionListener(this);
+        this.inicio.btnVentas.addActionListener(this);
+        this.vg.btnaddCart.addActionListener(this);
 
     }
 
@@ -180,29 +181,39 @@ public class CtrlIngrediente implements ActionListener, ListSelectionListener {
             p.setTipoProducto(cp.cmbTipoProducto.getSelectedItem().toString());
             p.setPrecioProducto(Double.parseDouble(cp.txtPrecio.getText()));
             if (consultas.registrar(p)) {
-                DefaultTableModel modelo = (DefaultTableModel) vg.tlbProductosCreados.getModel();
+                DefaultTableModel modelo = (DefaultTableModel) vg.tblProductosCreados.getModel();
                 modelo.setNumRows(0);
-                consultas.llenarTablaProducto(vg.tlbProductosCreados);
+                consultas.llenarTablaProducto(vg.tblProductosCreados);
                 JOptionPane.showMessageDialog(null, "Producto Creado exitosamente");
             
             }else {
             JOptionPane.showMessageDialog(null, "Error al guardarProducto");
         }
         }
-          if (e.getSource() == this.inicio.jButton1) {
+          if (e.getSource() == this.inicio.btnInventario) {
               ingGui.setLocationRelativeTo(null);
               ingGui.setSize(815, 508);
               ingGui.setVisible(true);
            
         }
-          if (e.getSource() == this.inicio.jButton2) {
+          if (e.getSource() == this.inicio.btnVentas) {
               vg.setLocationRelativeTo(null);
-              vg.setSize(573, 473);
+              vg.setSize(599, 489);
               vg.setVisible(true);
            
         }
           if (e.getSource() == this.vg.btnaddCart) {
-              
+              int fila = vg.tblProductosCreados.getSelectedRow();
+             p.setCodigoProducto(vg.tblProductosCreados.getValueAt(fila, 0).toString());
+             p.setNombreProducto(vg.tblProductosCreados.getValueAt(fila, 1).toString());
+             p.setTipoProducto(vg.tblProductosCreados.getValueAt(fila, 2).toString());
+             p.setPrecioProducto((double) vg.tblProductosCreados.getValueAt(fila, 3));
+             p.setCantidad((int) vg.spnCantidad.getValue());
+              if(consultas.addCart(p)){
+                  DefaultTableModel modelo = (DefaultTableModel)vg.tblVentas.getModel();
+                  modelo.setNumRows(0);
+                  consultas.llenarTablaVenta(vg.tblVentas);
+              }
            
         }
     }

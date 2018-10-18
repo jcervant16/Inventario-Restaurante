@@ -20,22 +20,22 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnInventario = new javax.swing.JButton();
+        btnVentas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_Checklist_clipboard_inventory_list_report_tasks_todo_1886533 (1).png"))); // NOI18N
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setFocusable(false);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 130, 90));
+        btnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_Checklist_clipboard_inventory_list_report_tasks_todo_1886533 (1).png"))); // NOI18N
+        btnInventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnInventario.setFocusable(false);
+        getContentPane().add(btnInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 130, 90));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_Shop_877020.png"))); // NOI18N
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setFocusable(false);
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 130, 90));
+        btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_Shop_877020.png"))); // NOI18N
+        btnVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVentas.setFocusable(false);
+        getContentPane().add(btnVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 130, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 350));
@@ -79,8 +79,8 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton2;
+    public javax.swing.JButton btnInventario;
+    public javax.swing.JButton btnVentas;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

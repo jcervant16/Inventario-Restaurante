@@ -15,6 +15,33 @@ public class Producto {
     private String nombreProducto;
     private String tipoProducto;
     private double precioProducto;
+    private boolean descuento;
+    private double cantidadDescuento;
+    private Ingrediente listaIngredientes;
+
+    public boolean isDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(boolean descuento) {
+        this.descuento = descuento;
+    }
+
+    public double getCantidadDescuento() {
+        return cantidadDescuento;
+    }
+
+    public void setCantidadDescuento(double cantidadDescuento) {
+        this.cantidadDescuento = cantidadDescuento;
+    }
+
+    public Ingrediente getListaIngredientes() {
+        return listaIngredientes;
+    }
+
+    public void setListaIngredientes(Ingrediente listaIngredientes) {
+        this.listaIngredientes = listaIngredientes;
+    }
     private int cantidad;
 
     public int getCantidad() {

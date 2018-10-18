@@ -46,7 +46,7 @@ public class ConsultasProducto extends Conexion{
     public boolean addCart(Producto p){
         PreparedStatement ps = null;
         Connection con = getConexion();
-        String sql = "INSERT INTO ventas(codigo,nombreProducto,tipo,precio,cantidad,total) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO ventas(codigoVenta,nombre,tipo,precio,cantidad,total) VALUES(?,?,?,?,?,?)";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, p.getCodigoProducto());
@@ -106,7 +106,7 @@ public class ConsultasProducto extends Conexion{
             ResultSet rs = null;
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
-            String sql = "SELECT codigo,nombreProducto,"
+            String sql = "SELECT codigoVenta,nombre,"
                     + " tipo, precio,cantidad,total FROM ventas";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
